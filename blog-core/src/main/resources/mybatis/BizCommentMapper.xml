@@ -27,6 +27,7 @@
 		<result property="oppose" jdbcType="INTEGER" column="oppose"/>
 		<result property="createTime" jdbcType="TIMESTAMP" column="create_time"/>
 		<result property="updateTime" jdbcType="TIMESTAMP" column="update_time"/>
+		<result property="createTimeString" jdbcType="VARCHAR" column="create_time_string"/>
 		<association property="parent" javaType="com.zyd.blog.persistence.beans.BizComment">
 			<result property="id" jdbcType="BIGINT" column="parent_id"/>
 			<result property="nickname" jdbcType="VARCHAR" column="parent_nickname"/>
@@ -55,7 +56,8 @@
 		    u.id AS u_id,
 		    u.username AS u_username,
 		    u.nickname AS u_nickname,
-		    u.user_type AS u_user_type
+		    u.user_type AS u_user_type,
+			date_format(t.create_time,'%Y-%m-%d %H:%I:%S') AS create_time_string
 		FROM
 			biz_comment t
 		LEFT JOIN biz_comment f ON t.pid = f.id

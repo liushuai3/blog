@@ -41,6 +41,7 @@ public class BizComment extends AbstractDO {
     private String remark;
     private Integer support;
     private Integer oppose;
+    private String createTimeString;
 
     @Transient
     private SysUser user;

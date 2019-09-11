@@ -260,6 +260,14 @@ public class Comment {
         this.bizComment.setOppose(oppose);
     }
 
+    public String getCreateTimeString() {
+        return this.bizComment.getCreateTimeString();
+    }
+
+    public void setCreateTimeString(String createTimeString) {
+        this.bizComment.setCreateTimeString(createTimeString);
+    }
+
     public Date getCreateTime() {
         return this.bizComment.getCreateTime();
     }
