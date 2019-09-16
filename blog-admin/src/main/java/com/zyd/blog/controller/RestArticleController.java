@@ -57,6 +57,8 @@ public class RestArticleController {
                 Article article = new Article();
                 article.setUserId(userId);
                 vo.setArticle(article);
+            }else{
+                vo.getArticle().setUserId(userId);
             }
         }
         PageInfo<Article> pageInfo = articleService.findPageBreakByCondition(vo);
