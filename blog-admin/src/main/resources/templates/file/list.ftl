@@ -12,12 +12,12 @@
         <div class="x_panel">
             <div class="x_content">
                 <div class="btn-group hidden-xs" id="toolbar" style="padding: 10px 0;">
-                    <@shiro.hasPermission name="files">
+                    <@shiro.hasPermission name="file:add">
                         <button id="btn_add" type="button" class="btn btn-info" title="新增图片">
                             <i class="fa fa-plus fa-fw"></i>
                         </button>
                     </@shiro.hasPermission>
-                    <@shiro.hasPermission name="files">
+                    <@shiro.hasPermission name="file:remove">
                         <button id="btn_delete_ids" type="button" class="btn btn-danger" title="删除选中">
                             <i class="fa fa-trash-o fa-fw"></i>
                         </button>

@@ -28,14 +28,14 @@ public class RestFileController {
     @Autowired
     private BizFileService fileService;
 
-    @RequiresPermissions("files")
+    @RequiresPermissions("file:list")
     @PostMapping("/list")
     public PageInfo list(FileConditionVO vo) {
         vo.setPageSize(20);
         return fileService.findPageBreakByCondition(vo);
     }
 
-    @RequiresPermissions("files")
+    @RequiresPermissions("file:remove")
     @PostMapping(value = "/remove")
     @BussinessLog("删除文件，ids:{1}")
     public ResponseVO remove(Long[] ids) {
@@ -47,7 +47,7 @@ public class RestFileController {
         return ResultUtil.success("成功删除 [" + ids.length + "] 张图片");
     }
 
-    @RequiresPermissions("files")
+    @RequiresPermissions("file:add")
     @PostMapping(value = "/add")
     @BussinessLog("添加文件")
     public ResponseVO add(MultipartFile[] file) {
