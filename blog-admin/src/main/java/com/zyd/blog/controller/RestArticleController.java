@@ -16,6 +16,7 @@ import com.zyd.blog.framework.object.ResponseVO;
 import com.zyd.blog.util.ResultUtil;
 import com.zyd.blog.util.UrlBuildUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,16 @@ public class RestArticleController {
     @RequiresPermissions("articles")
     @PostMapping("/list")
     public PageResult list(ArticleConditionVO vo) {
+        //获取当前登录的 userId
+        Long userId = (Long)SecurityUtils.getSubject().getPrincipal();
+        //如果不是管理员权限的用户，只能查询属于自己的文章
+        if(!SecurityUtils.getSubject().hasRole("role:root")){
+            if(vo.getArticle() == null){
+                Article article = new Article();
+                article.setUserId(userId);
+                vo.setArticle(article);
+            }
+        }
         PageInfo<Article> pageInfo = articleService.findPageBreakByCondition(vo);
         return ResultUtil.tablePage(pageInfo);
     }

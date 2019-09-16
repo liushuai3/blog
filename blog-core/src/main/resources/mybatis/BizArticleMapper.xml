@@ -63,6 +63,9 @@
 		INNER JOIN biz_type btype ON a.type_id = btype.id
 		INNER JOIN biz_article_tags atag ON a.id = atag.article_id
 		WHERE 1 = 1
+		<if test="article != null and article.userId != null">
+			AND	a.user_id = #{article.userId}
+		</if>
         <if test="typeId != null">
             AND	a.type_id = #{typeId}
         </if>
