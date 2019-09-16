@@ -93,7 +93,7 @@ public class RestArticleController {
         return ResultUtil.success(ResponseStatus.SUCCESS);
     }
 
-    @RequiresPermissions(value = {"article:top", "article:recommend"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"article:comment","article:top", "article:recommend"}, logical = Logical.OR)
     @PostMapping("/update/{type}")
     @BussinessLog("修改文章[{2}]的状态[{1}]")
     public ResponseVO update(@PathVariable("type") String type, Long id) {
