@@ -118,7 +118,7 @@
             </properties>
             <build>
                 <!-- 产生的构件的文件名-->
-                <finalName>${project.artifactId}</finalName>
+                <finalName>${project.artifactId}-${project.version}</finalName>
             </build>
         </profile>
         <!--生产配置-->
@@ -129,7 +129,7 @@
             </properties>
             <build>
                 <!-- 产生的构件的文件名-->
-                <finalName>${project.artifactId}</finalName>
+                <finalName>${project.artifactId}-${project.version}</finalName>
             </build>
         </profile>
     </profiles>
