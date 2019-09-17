@@ -2,10 +2,16 @@
 server:
     #https配置
     ssl:
-        key-store: classpath:/www.lcools.cn.pfx
+        key-store: classpath:/www.lcools.cn.jks
         enabled: true
-        key-store-password: KErR7QAD
-        key-store-type: PKCS12
+        key-store-password: ls@123456
+        key-store-type: JKS
+    #https配置
+    #ssl:
+    #   key-store: classpath:/www.lcools.cn.pfx
+    #   enabled: true
+    #   key-store-password: KErR7QAD
+    #   key-store-type: PKCS12
     tomcat:
         basedir: /var/tmp/website-blog-admin
 # SPRING PROFILES

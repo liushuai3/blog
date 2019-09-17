@@ -1,5 +1,6 @@
 # Server settings
 server:
+    #https配置
     ssl:
         key-store: classpath:/www.lcools.cn.jks
         enabled: true
