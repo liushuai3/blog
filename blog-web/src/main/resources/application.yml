@@ -10,7 +10,6 @@ server:
     #####
     ssl:
         key-store: classpath:/www.lcools.cn.pfx
-        key-alias: tomcat
         enabled: true
         key-store-password: KErR7QAD
         key-store-type: PKCS12
