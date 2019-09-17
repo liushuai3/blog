@@ -2,7 +2,6 @@
 server:
     ssl:
         key-store: classpath:/www.lcools.cn.jks
-        key-alias: tomcat
         enabled: true
         key-store-password: ls@123456
         key-store-type: JKS
