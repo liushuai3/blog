@@ -15,6 +15,7 @@
 </head>
 
 <body class="login">
+
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static"
      data-keyboard="false">
     <div class="modal-dialog" role="document">
@@ -23,18 +24,31 @@
                 <div class="login_wrapper">
                     <div class="animate form login_form" style="position: relative;">
                         <section class="login_content">
-                            <form action="/passport/signin" method="POST" id="login-form">
-                                <h1>登录管理系统</h1>
+                            <form action="/user/regist" method="POST" id="regist-form">
+                                <h1>注册用户</h1>
                                 <#if message??>
                                     <div class="alert alert-danger" role="alert">
                                         ${message!}
                                     </div>
                                 </#if>
+                                <input type="hidden" name="id">
                                 <div>
-                                    <input type="text" class="form-control" placeholder="请输入用户名" name="username" required=""/>
+                                    <input type="text" class="form-control" name="username" id="username" required="required" placeholder="请输入用户名"/>
                                 </div>
                                 <div>
-                                    <input type="password" class="form-control" placeholder="请输入密码" name="password" required=""/>
+                                    <input type="password" class="form-control" id="password" name="password" required="required" placeholder="请输入密码 6位以上"/>
+                                </div>
+                                <div>
+                                    <input type="text" class="form-control" name="nickname" id="nickname" placeholder="请输入昵称"/>
+                                </div>
+                                <div>
+                                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入手机号"/>
+                                </div>
+                                <div>
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="请输入邮箱"/>
+                                </div>
+                                <div>
+                                    <input type="text" class="form-control" name="qq" id="qq" placeholder="请输入邮箱"/>
                                 </div>
                                 <#if enableKaptcha?? && enableKaptcha>
                                     <div class="form-group col-xs-6" style="padding-left: 0px;">
@@ -44,14 +58,11 @@
                                         <span><input type="text" class="form-control" placeholder="验证码" id="kaptcha" name="kaptcha"></span>
                                     </div>
                                 </#if>
-                                <div class="form-group" style="text-align : left">
-                                    <label><input type="checkbox" id="rememberMe" name="rememberMe" style="width: 12px; height: 12px;margin-right: 5px;"> 记住我</label>
-                                </div>
                                 <div>
-                                    <button type="button" class="btn btn-success btn-login" style="width: 100%;">登录</button>
+                                    <button type="button" class="btn btn-success btn-login" style="width: 100%;">注册</button>
                                 </div>
                                 <div class="login-loading hide">
-                                    <i class="fa fa-spinner fa-pulse"></i>正在登录中...
+                                    <i class="fa fa-spinner fa-pulse"></i>正在注册中...
                                 </div>
                             </form>
                         </section>
@@ -61,6 +72,7 @@
         </div>
     </div>
 </div>
+
 </body>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@1.11.1/dist/jquery.min.js"></script>
@@ -68,13 +80,14 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-confirm@3.3.2/dist/jquery-confirm.min.js"></script>
 <script src="/assets/js/zhyd.tool.js"></script>
 <script>
+
     $("#modal").modal('show');
     $(".btn-login").click(function () {
         $(".login-loading").removeClass("hide");
         $.ajax({
             type: "POST",
-            url: "/passport/signin",
-            data: $("#login-form").serialize(),
+            url: "/user/regist",
+            data: $("#regist-form").serialize(),
             dataType: "json",
             success: function (json) {
                 $(".login-loading").addClass("hide");

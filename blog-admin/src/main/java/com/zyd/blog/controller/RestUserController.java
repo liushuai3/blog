@@ -9,8 +9,10 @@ import com.zyd.blog.business.service.SysUserService;
 import com.zyd.blog.business.vo.UserConditionVO;
 import com.zyd.blog.framework.object.PageResult;
 import com.zyd.blog.framework.object.ResponseVO;
+import com.zyd.blog.framework.property.AppProperties;
 import com.zyd.blog.util.PasswordUtil;
 import com.zyd.blog.util.ResultUtil;
+import com.zyd.blog.util.SessionUtil;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class RestUserController {
+    @Autowired
+    private AppProperties config;
     @Autowired
     private SysUserService userService;
     @Autowired
@@ -114,6 +118,32 @@ public class RestUserController {
             return ResultUtil.error("用户修改失败！");
         }
         return ResultUtil.success(ResponseStatus.SUCCESS);
+    }
+
+    @PostMapping(value = "/regist")
+    @BussinessLog("注册用户")
+    public ResponseVO regist(User user,String kaptcha) {
+        if (config.isEnableKaptcha()) {
+            if (StringUtils.isEmpty(kaptcha) || !kaptcha.equals(SessionUtil.getKaptcha())) {
+                return ResultUtil.error("验证码错误！");
+            }
+            SessionUtil.removeKaptcha();
+        }
+        User u = userService.getByUserName(user.getUsername());
+        if (u != null) {
+            return ResultUtil.error("该用户名["+user.getUsername()+"]已存在！请更改用户名");
+        }
+        try {
+            user.setPassword(PasswordUtil.encrypt(user.getPassword(), user.getUsername()));
+            //添加用户
+            User user1 = userService.insert(user);
+            //为用户添加角色,注册用户初始化角色为4：普通用户
+            userRoleService.addUserRole(user1.getId(), "4");
+            return ResultUtil.success("成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error("error");
+        }
     }
 
 }

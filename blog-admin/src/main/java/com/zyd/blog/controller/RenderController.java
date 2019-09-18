@@ -15,6 +15,7 @@ import com.zyd.blog.business.entity.Article;
 import com.zyd.blog.business.service.BizArticleService;
 import com.zyd.blog.business.service.SysConfigService;
 import com.zyd.blog.core.websocket.server.ZydWebsocketServer;
+import com.zyd.blog.framework.property.AppProperties;
 import com.zyd.blog.util.ResultUtil;
 import me.zhyd.hunter.config.HunterConfigTemplate;
 import me.zhyd.hunter.config.platform.Platform;
@@ -42,6 +43,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class RenderController {
 
+    @Autowired
+    private AppProperties config;
     @Autowired
     private BizArticleService articleService;
     @Autowired
@@ -210,5 +213,12 @@ public class RenderController {
     @GetMapping("/files")
     public ModelAndView files(Model model) {
         return ResultUtil.view("file/list");
+    }
+
+    @BussinessLog("进入注册页面")
+    @GetMapping("/regist")
+    public ModelAndView regist(Model model) {
+        model.addAttribute("enableKaptcha", config.isEnableKaptcha());
+        return ResultUtil.view("regist");
     }
 }
