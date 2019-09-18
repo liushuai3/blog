@@ -24,7 +24,7 @@
                 <div class="login_wrapper">
                     <div class="animate form login_form" style="position: relative;">
                         <section class="login_content">
-                            <form action="/user/regist" method="POST" id="regist-form">
+                            <form action="/passport/regist" method="POST" id="regist-form">
                                 <h1>注册用户</h1>
                                 <#if message??>
                                     <div class="alert alert-danger" role="alert">
@@ -86,7 +86,7 @@
         $(".login-loading").removeClass("hide");
         $.ajax({
             type: "POST",
-            url: "/user/regist",
+            url: "/passport/regist",
             data: $("#regist-form").serialize(),
             dataType: "json",
             success: function (json) {

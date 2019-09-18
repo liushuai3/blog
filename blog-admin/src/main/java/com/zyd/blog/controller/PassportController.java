@@ -1,11 +1,14 @@
 package com.zyd.blog.controller;
 
 import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.entity.User;
 import com.zyd.blog.business.entity.UserPwd;
+import com.zyd.blog.business.service.SysUserRoleService;
 import com.zyd.blog.business.service.SysUserService;
 import com.zyd.blog.framework.holder.RequestHolder;
 import com.zyd.blog.framework.object.ResponseVO;
 import com.zyd.blog.framework.property.AppProperties;
+import com.zyd.blog.util.PasswordUtil;
 import com.zyd.blog.util.ResultUtil;
 import com.zyd.blog.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +48,8 @@ public class PassportController {
     private AppProperties config;
     @Autowired
     private SysUserService userService;
+    @Autowired
+    private SysUserRoleService userRoleService;
 
     @BussinessLog("进入登录页面")
     @GetMapping("/login")
@@ -125,5 +130,39 @@ public class PassportController {
         // 因为退出操作是由Shiro控制的
         redirectAttributes.addFlashAttribute("message", "您已安全退出");
         return ResultUtil.redirect("index");
+    }
+
+    @PostMapping(value = "/regist")
+    @BussinessLog("注册用户")
+    @ResponseBody
+    public ResponseVO regist(User user, String kaptcha) {
+        if (config.isEnableKaptcha()) {
+            if (StringUtils.isEmpty(kaptcha) || !kaptcha.equals(SessionUtil.getKaptcha())) {
+                return ResultUtil.error("验证码错误！");
+            }
+            SessionUtil.removeKaptcha();
+        }
+        User u = userService.getByUserName(user.getUsername());
+        if (u != null) {
+            return ResultUtil.error("该用户名["+user.getUsername()+"]已存在！请更改用户名");
+        }
+        try {
+            user.setPassword(PasswordUtil.encrypt(user.getPassword(), user.getUsername()));
+            //添加用户
+            User user1 = userService.insert(user);
+            //为用户添加角色,注册用户初始化角色为4：普通用户
+            userRoleService.addUserRole(user1.getId(), "4");
+            SavedRequest savedRequest = WebUtils.getSavedRequest(RequestHolder.getRequest());
+            String historyUrl = null;
+            if(null != savedRequest) {
+                if(!savedRequest.getMethod().equals("POST")) {
+                    historyUrl = savedRequest.getRequestUrl();
+                }
+            }
+            return ResultUtil.success(null, historyUrl);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error("error");
+        }
     }
 }
