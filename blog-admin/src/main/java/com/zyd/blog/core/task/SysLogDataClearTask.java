@@ -40,7 +40,7 @@ public class SysLogDataClearTask {
     //或直接指定时间间隔，例如：5秒
     //@Scheduled(fixedRate=5000)
     private void configureTasks() throws Exception{
-        log.error("开始执行定时删除sys_log数据，执行时间：" + LocalDateTime.now());
+        log.error("开始执行定时删除sys_log数据，执行时间:" + LocalDateTime.now());
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet =null;
