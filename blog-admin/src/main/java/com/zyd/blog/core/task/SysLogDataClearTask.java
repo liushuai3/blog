@@ -35,6 +35,7 @@ public class SysLogDataClearTask {
     @Autowired
     DataSource dataSource;
     //3.添加定时任务
+    //每月的7,14,21,28号凌晨2点20执行
     @Scheduled(cron = "0 20 2 7,14,21,28 * ?")
     //或直接指定时间间隔，例如：5秒
     //@Scheduled(fixedRate=5000)
