@@ -45,7 +45,7 @@ public class BlogApplicationRunner extends ContextLoaderListener implements Appl
 
     @Override
     public void run(ApplicationArguments applicationArguments) {
-        log.info("博客部署完成，博客访问地址：http://localhost:" + port);
+        log.info("博客部署完成。");
     }
 
     @Override
