@@ -63,7 +63,7 @@ spring:
 
 # logging settings
 logging:
-  path: /var/tmp/website-blog-web
+  path: /data/gits/blog/logs/website-blog-web
 
 # braum过滤器，用于过滤恶意请求
 braum:

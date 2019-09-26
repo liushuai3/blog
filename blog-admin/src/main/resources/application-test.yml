@@ -61,7 +61,7 @@ spring:
         expire: 2592000
 # logging settings
 logging:
-  path: /var/tmp/website-blog-admin
+  path: /data/gits/blog/logs/website-blog-web
 ####################################自定义配置##########################################
 app:
     # 是否启用kaptcha验证码

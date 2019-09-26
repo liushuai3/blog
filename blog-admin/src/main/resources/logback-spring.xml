@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!--定义日志文件的存储路径-->
-    <property name="LOG_HOME" value="/data/gits/blog/logs/website-blog-admin"/>
+    <!--<property name="LOG_HOME" value="/data/gits/blog/logs/website-blog-admin"/>-->
     <springProperty scope="context" name="logdir" source="logging.path"/>
 
     <!-- 控制台 appender -->
@@ -31,7 +31,7 @@
     <logger name="com.zyd.blog.framework.runner" level="INFO"/>
 
     <!-- 测试环境+开发环境，日志级别为INFO且不写日志文件 -->
-    <springProfile name="test">
+    <springProfile name="dev">
         <logger name="com.zyd.blog" additivity="false">
             <appender-ref ref="STDOUT"/>
         </logger>
@@ -41,7 +41,7 @@
     </springProfile>
 
     <!-- 生产环境. 日志级别为WARN且写日志文件-->
-    <springProfile name="prod,dev">
+    <springProfile name="prod,test">
         <logger name="com.zyd.blog" additivity="false">
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="FILE" />
