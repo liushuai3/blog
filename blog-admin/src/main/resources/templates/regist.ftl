@@ -48,7 +48,7 @@
                                     <input type="text" class="form-control" name="email" id="email" placeholder="请输入邮箱"/>
                                 </div>
                                 <div>
-                                    <input type="text" class="form-control" name="qq" id="qq" placeholder="请输入邮箱"/>
+                                    <input type="text" class="form-control" name="qq" id="qq" placeholder="请输入QQ"/>
                                 </div>
                                 <#if enableKaptcha?? && enableKaptcha>
                                     <div class="form-group col-xs-6" style="padding-left: 0px;">
