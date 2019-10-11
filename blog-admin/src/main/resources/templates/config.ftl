@@ -33,7 +33,7 @@
                                 <a href="#tab_comment" id="comment-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-commenting-o fa-fw"></i> 评论</a>
                             </li>
                             <li role="presentation">
-                                <a href="#tab_article_editor" id="article-editor-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-edit fa-fw"></i> 文章编辑器</a>
+                                <a href="#tab_article_editor" id="article-editor-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-edit fa-fw"></i> 编辑器</a>
                             </li>
                             <li role="presentation" class="">
                                 <a href="#tab_contact" role="tab" id="contact-tab" data-toggle="tab" aria-expanded="false"><i class="fa fa-id-card-o fa-fw"></i> 联系方式</a>
