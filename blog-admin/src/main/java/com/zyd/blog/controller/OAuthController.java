@@ -7,6 +7,7 @@ import com.zyd.blog.plugin.oauth.RequestFactory;
 import com.zyd.blog.util.RequestUtil;
 import com.zyd.blog.util.ResultUtil;
 import com.zyd.blog.util.SessionUtil;
+import lombok.extern.slf4j.Slf4j;
 import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.model.AuthResponse;
 import me.zhyd.oauth.model.AuthToken;
@@ -32,6 +33,7 @@ import java.io.IOException;
  * @date 2019/2/19 9:28
  * @since 1.8
  */
+@Slf4j
 @Controller
 @RequestMapping("/oauth")
 public class OAuthController {
@@ -56,6 +58,7 @@ public class OAuthController {
     @RequestMapping("/callback/{source}")
     public ModelAndView login(@PathVariable("source") String source, AuthCallback callback, HttpSession session) {
         boolean isLogin = authService.login(source, callback);
+        log.error("isLogin：", isLogin);
         if(isLogin){
             User user = SessionUtil.getUser();
             UsernamePasswordTokenMe token = new UsernamePasswordTokenMe(user.getUsername(), "", false,true);
@@ -67,7 +70,7 @@ public class OAuthController {
                 // 所以这一步在调用login(token)方法时,它会走到xxRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
                 currentUser.login(token);
             }catch (Exception e){
-
+                log.error("登录异常:"+e.getMessage(), e);
             }
         }
         String historyUrl = (String) session.getAttribute("historyUrl");
