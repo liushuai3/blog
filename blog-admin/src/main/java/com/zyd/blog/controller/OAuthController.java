@@ -73,13 +73,7 @@ public class OAuthController {
                 log.error("登录异常:"+e.getMessage(), e);
             }
         }
-        String historyUrl = (String) session.getAttribute("historyUrl");
-        session.removeAttribute("historyUrl");
-        log.error("historyUrl："+historyUrl);
-        if (StringUtils.isEmpty(historyUrl)) {
-            return ResultUtil.redirect("/");
-        }
-        return ResultUtil.redirect(historyUrl);
+        return ResultUtil.redirect("/");
     }
 
     /**
