@@ -46,11 +46,11 @@
                 <@shiro.user>
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="/assets/images/loading.gif" alt="..." class="img-circle profile_img">
+                        <img src="<#if user??>${user.avatar!}<#else>/assets/images/loading.gif</#if>" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span id="hello_msg">&nbsp;</span>
-                        <h2>尊敬的管理员</h2>
+                        <h2>尊敬的<#if user??>${user.username!}<#else>管理员</#if></h2>
                     </div>
                 </div>
                 </@shiro.user>

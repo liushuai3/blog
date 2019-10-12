@@ -5,6 +5,7 @@ import com.zyd.blog.business.entity.User;
 import com.zyd.blog.business.entity.UserPwd;
 import com.zyd.blog.business.service.SysUserRoleService;
 import com.zyd.blog.business.service.SysUserService;
+import com.zyd.blog.core.shiro.credentials.UsernamePasswordTokenMe;
 import com.zyd.blog.framework.holder.RequestHolder;
 import com.zyd.blog.framework.object.ResponseVO;
 import com.zyd.blog.framework.property.AppProperties;
@@ -75,7 +76,7 @@ public class PassportController {
             }
             SessionUtil.removeKaptcha();
         }
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
+        UsernamePasswordTokenMe token = new UsernamePasswordTokenMe(username, password, rememberMe,false);
         //获取当前的Subject
         Subject currentUser = SecurityUtils.getSubject();
         try {

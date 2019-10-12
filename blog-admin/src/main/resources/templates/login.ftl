@@ -56,6 +56,28 @@
                             </form>
                         </section>
                     </div>
+                    <div class="modal-body">
+                        <span>快速登录：</span>
+                        <div class="oauth">
+                            <ul class="list-unstyled list-inline oauth-list">
+                                <@zhydTag method="listAvailableOAuthPlatforms">
+                                    <#if listAvailableOAuthPlatforms?? && listAvailableOAuthPlatforms?size gt 0>
+                                        <#list listAvailableOAuthPlatforms as item>
+                                            <li>
+                                                <a href="${config.siteUrl}/oauth/render/${item}" target="">
+                                                    <img src="/assets/images/${item}.png" alt="" class="img-circle">
+                                                </a>
+                                            </li>
+                                        </#list>
+                                    <#else>
+                                        <li>
+                                            稍等一下， 博主正在快马加鞭的配置~~
+                                        </li>
+                                    </#if>
+                                </@zhydTag>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

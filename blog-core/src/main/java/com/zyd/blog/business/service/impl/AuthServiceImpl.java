@@ -3,6 +3,7 @@ package com.zyd.blog.business.service.impl;
 import com.zyd.blog.business.entity.User;
 import com.zyd.blog.business.enums.UserTypeEnum;
 import com.zyd.blog.business.service.AuthService;
+import com.zyd.blog.business.service.SysUserRoleService;
 import com.zyd.blog.business.service.SysUserService;
 import com.zyd.blog.plugin.oauth.RequestFactory;
 import com.zyd.blog.util.BeanConvertUtil;
@@ -28,6 +29,8 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private SysUserService userService;
+    @Autowired
+    private SysUserRoleService userRoleService;
 
     @Override
     public boolean login(String source, AuthCallback callback) {
@@ -47,6 +50,7 @@ public class AuthServiceImpl implements AuthService {
                 userService.updateSelective(newUser);
             } else {
                 userService.insert(newUser);
+                userRoleService.addUserRole(newUser.getId(), "4");
             }
             SessionUtil.setUser(newUser);
             return true;

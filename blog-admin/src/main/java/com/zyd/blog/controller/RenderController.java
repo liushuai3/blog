@@ -16,6 +16,7 @@ import com.zyd.blog.business.service.BizArticleService;
 import com.zyd.blog.business.service.SysConfigService;
 import com.zyd.blog.core.websocket.server.ZydWebsocketServer;
 import com.zyd.blog.framework.property.AppProperties;
+import com.zyd.blog.framework.tag.CustomTags;
 import com.zyd.blog.util.ResultUtil;
 import me.zhyd.hunter.config.HunterConfigTemplate;
 import me.zhyd.hunter.config.platform.Platform;
@@ -30,6 +31,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
 
 /**
  * 页面跳转类
@@ -51,11 +54,14 @@ public class RenderController {
     private SysConfigService configService;
     @Autowired
     private ZydWebsocketServer websocketServer;
+    @Autowired
+    private CustomTags customTags;
 
     @RequiresAuthentication
     @BussinessLog("进入首页")
     @GetMapping(value = {""})
-    public ModelAndView home() {
+    public ModelAndView home(Model model) {
+        model.addAttribute("listAvailableOAuthPlatforms", customTags.listAvailableOAuthPlatforms(new HashMap()));
         return ResultUtil.view("index");
     }
 

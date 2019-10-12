@@ -66,6 +66,7 @@ public class ShiroServiceImpl implements ShiroService {
         filterChainDefinitionMap.put("/vendors/**", "anon");
         filterChainDefinitionMap.put("/getKaptcha", "anon");
         filterChainDefinitionMap.put("/passport/regist", "anon");
+        filterChainDefinitionMap.put("/oauth/**", "anon");
         filterChainDefinitionMap.put("/regist", "anon");
         // 加载数据库中配置的资源权限列表
         List<Resources> resourcesList = resourcesService.listUrlAndPermission();
