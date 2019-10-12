@@ -3,7 +3,6 @@ package com.zyd.blog.core.shiro.credentials;
 import com.zyd.blog.util.PasswordUtil;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 
 /**
