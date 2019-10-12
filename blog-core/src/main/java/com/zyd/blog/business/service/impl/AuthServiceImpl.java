@@ -38,6 +38,7 @@ public class AuthServiceImpl implements AuthService {
         AuthResponse response = authRequest.login(callback);
         if (response.ok()) {
             AuthUser authUser = (AuthUser) response.getData();
+            log.error("authUser：", authUser.toString());
             User newUser = BeanConvertUtil.doConvert(authUser, User.class);
             newUser.setSource(authUser.getSource().toString());
             if (null != authUser.getGender()) {
