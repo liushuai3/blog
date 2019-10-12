@@ -75,6 +75,7 @@ public class OAuthController {
         }
         String historyUrl = (String) session.getAttribute("historyUrl");
         session.removeAttribute("historyUrl");
+        log.error("historyUrl："+historyUrl);
         if (StringUtils.isEmpty(historyUrl)) {
             return ResultUtil.redirect("/");
         }

@@ -56,7 +56,7 @@ public class AuthServiceImpl implements AuthService {
             SessionUtil.setUser(newUser);
             return true;
         }
-        log.warn("[{}] {}", source, response.getMsg());
+        log.error("[{}] {}", source, response.getMsg());
         return false;
     }
 
