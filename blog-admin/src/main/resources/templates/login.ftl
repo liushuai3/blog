@@ -64,7 +64,7 @@
                                     <#if listAvailableOAuthPlatforms?? && listAvailableOAuthPlatforms?size gt 0>
                                         <#list listAvailableOAuthPlatforms as item>
                                             <li>
-                                                <a href="${config.siteUrl}/oauth/render/${item}" target="">
+                                                <a href="${config.cmsUrl}/oauth/render/${item}" target="">
                                                     <img src="/assets/images/${item}.png" alt="" class="img-circle">
                                                 </a>
                                             </li>
