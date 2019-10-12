@@ -58,7 +58,7 @@ public class OAuthController {
     @RequestMapping("/callback/{source}")
     public ModelAndView login(@PathVariable("source") String source, AuthCallback callback, HttpSession session) {
         boolean isLogin = authService.login(source, callback);
-        log.error("isLogin：", isLogin);
+        log.error("isLogin："+isLogin);
         if(isLogin){
             User user = SessionUtil.getUser();
             UsernamePasswordTokenMe token = new UsernamePasswordTokenMe(user.getUsername(), "", false,true);
