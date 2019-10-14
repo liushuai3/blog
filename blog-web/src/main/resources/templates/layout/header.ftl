@@ -23,8 +23,8 @@
             <#else>
                 <ul class="list-unstyled list-inline pull-left">
                     <!--<li><a href="javascript:;;" data-toggle="modal" data-target="#oauth" rel="nofollow" title="授权登录">登录</a></li>-->
-                    <li><a href="${config.cmsUrl}" title="授权登录">登录</a></li>
-                    <li><a href="${config.cmsUrl}/regist" title="授权注册">注册</a></li>
+                    <li><a href="${config.cmsUrl}" title="授权登录">后台管理</a></li>
+                    <!--<li><a href="${config.cmsUrl}/regist" title="授权注册">注册</a></li>-->
                 </ul>
             </#if>
         </div>

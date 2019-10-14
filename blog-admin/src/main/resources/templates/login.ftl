@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -50,33 +50,36 @@
                                 <div>
                                     <button type="button" class="btn btn-success btn-login" style="width: 100%;">登录</button>
                                 </div>
+                                <div style="text-align:right">
+                                    <a href="${config.cmsUrl}/regist" title="授权注册">快速注册</a>
+                                </div>
+                                <div class="modal-body" style="text-align:left">
+                                    <span>快速登录：</span>
+                                    <div class="oauth">
+                                        <ul class="list-unstyled list-inline oauth-list">
+                                            <@zhydTag method="listAvailableOAuthPlatforms">
+                                                <#if listAvailableOAuthPlatforms?? && listAvailableOAuthPlatforms?size gt 0>
+                                                    <#list listAvailableOAuthPlatforms as item>
+                                                        <li>
+                                                            <a href="${config.cmsUrl}/oauth/render/${item}" target="">
+                                                                <img src="/assets/images/${item}.png" alt="" class="img-circle">
+                                                            </a>
+                                                        </li>
+                                                    </#list>
+                                                <#else>
+                                                    <li>
+                                                        稍等一下， 博主正在快马加鞭的配置~~
+                                                    </li>
+                                                </#if>
+                                            </@zhydTag>
+                                        </ul>
+                                    </div>
+                                </div>
                                 <div class="login-loading hide">
                                     <i class="fa fa-spinner fa-pulse"></i>正在登录中...
                                 </div>
                             </form>
                         </section>
-                    </div>
-                    <div class="modal-body">
-                        <span>快速登录：</span>
-                        <div class="oauth">
-                            <ul class="list-unstyled list-inline oauth-list">
-                                <@zhydTag method="listAvailableOAuthPlatforms">
-                                    <#if listAvailableOAuthPlatforms?? && listAvailableOAuthPlatforms?size gt 0>
-                                        <#list listAvailableOAuthPlatforms as item>
-                                            <li>
-                                                <a href="${config.cmsUrl}/oauth/render/${item}" target="">
-                                                    <img src="/assets/images/${item}.png" alt="" class="img-circle">
-                                                </a>
-                                            </li>
-                                        </#list>
-                                    <#else>
-                                        <li>
-                                            稍等一下， 博主正在快马加鞭的配置~~
-                                        </li>
-                                    </#if>
-                                </@zhydTag>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
