@@ -3,6 +3,7 @@ package com.zyd.blog.controller;
 import com.zyd.blog.business.annotation.BussinessLog;
 import com.zyd.blog.business.entity.User;
 import com.zyd.blog.business.entity.UserPwd;
+import com.zyd.blog.business.enums.UserTypeEnum;
 import com.zyd.blog.business.service.SysUserRoleService;
 import com.zyd.blog.business.service.SysUserService;
 import com.zyd.blog.core.shiro.credentials.UsernamePasswordTokenMe;
@@ -149,6 +150,7 @@ public class PassportController {
         try {
             user.setPassword(PasswordUtil.encrypt(user.getPassword(), user.getUsername()));
             //添加用户
+            user.setUserType(UserTypeEnum.USER);
             User user1 = userService.insert(user);
             //为用户添加角色,注册用户初始化角色为4：普通用户
             userRoleService.addUserRole(user1.getId(), "4");
