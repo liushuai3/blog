@@ -16,6 +16,7 @@
             <div class="blog-body expansion">
                 <h5 class="custom-title"><i class="fa fa-coffee fa-fw"></i><strong>简单的要求</strong><small> - 简单点，说话的方式简单点</small></h5>
                 <div class="link-info">
+                    <!--
                     <ul class="list-unstyled">
                         <li>本站定位：个人技术类博客</li>
                         <li>本站作用：写博客、记日志、闲聊扯淡鼓捣技术</li>
@@ -31,6 +32,7 @@
                         </li>
                         <li><a class="btn btn-default btn-sm auto-link-btn" style="margin-top: 10px;" data-toggle="modal" data-target="#auto-link-modal"><i class="fa fa-hand-grab-o"></i>自助申请友链</a></li>
                     </ul>
+                    -->
                 </div>
             </div>
         </div>
