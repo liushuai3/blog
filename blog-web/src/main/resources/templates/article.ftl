@@ -216,7 +216,7 @@
         var bdText = $("#meta_description").attr("content")+" - by ${config.domain}";
         // 如果文章没有封面图，则取默认的图片
         var coverImg = $("#cover-img").attr("src") || "${config.staticWebSite}/img/default_article_cover.jpg";
-        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":bdText,"bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","renren","tqq","kaixin001","tqf","tieba","douban","bdhome","sqq","youdao","sdo","qingbiji","mail","isohu","ty","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":coverImg,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        //window._bd_share_config={"common":{"bdSnsKey":{},"bdText":bdText,"bdMini":"2","bdMiniList":["mshare","qzone","tsina","bdysc","weixin","renren","tqq","kaixin001","tqf","tieba","douban","bdhome","sqq","youdao","sdo","qingbiji","mail","isohu","ty","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":coverImg,"bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
     </script>
     <script src="https://v1.hitokoto.cn/?encode=js&c=d&select=%23hitokoto" defer></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/lib/highlight.min.js"></script>
