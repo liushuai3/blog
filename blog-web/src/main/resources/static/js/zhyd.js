@@ -205,7 +205,6 @@ $(function () {
     initNavbar();
     initArticeMenu();
     initScrollMenu();
-    console.log("OneBlog，一个简洁美观、功能强大并且自适应的Java博客！");
 
     $('.to-top').toTop({
         autohide: true,//返回顶部按钮是否自动隐藏。可以设置true或false。默认为true
