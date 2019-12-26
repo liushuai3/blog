@@ -1,6 +1,6 @@
 <#include "include/macros.ftl">
 <@compress single_line=false>
-<@header title="${config.siteName!} | 一个程序员的个人技术文章记录"
+<@header title="${config.siteName!}"
     keywords="${config.homeKeywords!}"
     description="${config.homeDesc!}"
     canonical="/${url!}">
