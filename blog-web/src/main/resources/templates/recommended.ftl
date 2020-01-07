@@ -25,7 +25,7 @@
                 </article>
             <#else >
                 <article class="fade-in">
-                    <div class="h3 text-center">亲，啥也没找到啊~~<img src="http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/15/j_thumb.gif" alt="[囧]"></div>
+                    <div class="h3 text-center">亲，啥也没找到啊~~<img src="https://lcools-blog.oss-cn-chengdu.aliyuncs.com/oneblog/20200107160307951.gif" alt="[囧]"></div>
                     <img src="${config.staticWebSite}/img/wrong.gif" class="center-block" alt="惩罚我" style="width: 110px;margin-top: -10px;">
                 </article>
             </#if>

@@ -98,7 +98,7 @@
                 <article class="fade-in" style="height: auto">
                     <div class="rows">
                         <div class="col-md-10 col-sm-12">
-                            <div class="h3 text-center">亲，啥也没找到啊~~<img src="http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/15/j_thumb.gif" alt="[囧]"></div>
+                            <div class="h3 text-center">亲，啥也没找到啊~~<img src="https://lcools-blog.oss-cn-chengdu.aliyuncs.com/oneblog/20200107160307951.gif" alt="[囧]"></div>
                             <div class="h5 text-center">换个姿势，再来一次~~</div>
                         </div>
                         <div class="col-md-2 col-sm-12">
