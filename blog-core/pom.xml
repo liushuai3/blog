@@ -232,12 +232,5 @@
             <artifactId>JustAuth</artifactId>
             <version>${justauth.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.dingtalk.open/taobao-sdk-java-auto -->
-        <dependency>
-            <groupId>com.dingtalk.open</groupId>
-            <artifactId>taobao-sdk-java-auto</artifactId>
-            <version>1479188381469-20180227</version>
-        </dependency>
-
     </dependencies>
 </project>
