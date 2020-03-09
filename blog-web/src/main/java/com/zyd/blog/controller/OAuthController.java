@@ -1,5 +1,12 @@
 package com.zyd.blog.controller;
 
+import com.taobao.api.DefaultTaobaoClient;
+import com.taobao.api.TaobaoClient;
+import com.taobao.api.TaobaoResponse;
+import com.taobao.api.request.TbkUatmFavoritesGetRequest;
+import com.taobao.api.request.TbkUatmFavoritesItemGetRequest;
+import com.taobao.api.response.TbkUatmFavoritesGetResponse;
+import com.taobao.api.response.TbkUatmFavoritesItemGetResponse;
 import com.zyd.blog.business.service.AuthService;
 import com.zyd.blog.plugin.oauth.RequestFactory;
 import com.zyd.blog.util.RequestUtil;
@@ -86,6 +93,32 @@ public class OAuthController {
     public ModelAndView logout() {
         authService.logout();
         return ResultUtil.redirect("/");
+    }
+
+    public static void main(String[] args) throws Exception{
+        String url = "https://eco.taobao.com/router/rest";
+        String appkey = "28485666";
+        String secret = "feac79d58095283addca7ab933500b89";
+        TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
+        TbkUatmFavoritesGetRequest req = new TbkUatmFavoritesGetRequest();
+        req.setPageNo(1L);
+        req.setPageSize(20L);
+        req.setFields("favorites_title,favorites_id,type");
+        req.setType(1L);
+        TbkUatmFavoritesGetResponse rsp = client.execute(req);
+        System.out.println(rsp.getBody());
+
+
+        TbkUatmFavoritesItemGetRequest reqx = new TbkUatmFavoritesItemGetRequest();
+        reqx.setPlatform(1L);
+        reqx.setPageSize(20L);
+        reqx.setAdzoneId(110088300188L);
+        reqx.setUnid("123456");
+        reqx.setFavoritesId(20228278L);
+        reqx.setPageNo(1L);
+        reqx.setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,status,type");
+        TbkUatmFavoritesItemGetResponse rspx = client.execute(reqx);
+        System.out.println(rspx.getBody());
     }
 
 }
