@@ -10,6 +10,14 @@ package com.zyd.blog.controller;
  * @since 1.0
  */
 
+import cn.hutool.core.map.MapUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.taobao.api.DefaultTaobaoClient;
+import com.taobao.api.TaobaoClient;
+import com.taobao.api.request.TbkUatmFavoritesGetRequest;
+import com.taobao.api.response.TbkUatmFavoritesGetResponse;
 import com.zyd.blog.business.annotation.BussinessLog;
 import com.zyd.blog.business.entity.Article;
 import com.zyd.blog.business.service.BizArticleService;
@@ -32,7 +40,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 页面跳转类
@@ -226,5 +237,11 @@ public class RenderController {
     public ModelAndView regist(Model model) {
         model.addAttribute("enableKaptcha", config.isEnableKaptcha());
         return ResultUtil.view("regist");
+    }
+
+    @BussinessLog("导入数据")
+    @GetMapping("/import")
+    public ModelAndView importData(Model model) {
+        return ResultUtil.view("article/import");
     }
 }
