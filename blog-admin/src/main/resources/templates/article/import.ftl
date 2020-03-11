@@ -30,13 +30,13 @@
          * @returns {string}
          */
         function operateFormatter(code, row, index) {
-            var trId = row.id;
             var operateBtn = [
-                '<@shiro.hasPermission name="tag:add"><a class="btn btn-sm btn-success btn-update" data-id="' + trId + '"title="导入推广数据"><i class="fa fa-plus fa-fw"></i></a></@shiro.hasPermission>',
+                /*'<@shiro.hasPermission name="import:add"><button id="btn_import" type="button" onclick="importData(this)" class="btn btn-info" title="导入该选品库数据"><i class="fa fa-plus fa-fw"></i></button></@shiro.hasPermission>'*/
+                '<button id="btn_import" type="button" onclick="importData(this)" class="btn btn-info" title="导入该选品库数据"><i class="fa fa-plus fa-fw"></i></button>'
             ];
             return operateBtn.join('');
         }
-
+        var table ;
         $(function () {
             var options = {
                 modalName: "选品库",
@@ -44,7 +44,7 @@
                 getInfoUrl: "",
                 updateUrl: "",
                 removeUrl: "",
-                createUrl: "/import/add",
+                createUrl: "",
                 search: false,
                 columns: [
                     {
@@ -81,8 +81,24 @@
                 ]
             };
             // 初始化table组件
-            var table = new Table(options);
+            table = new Table(options);
             table.init();
         });
+        function importData(th) {
+            var favoritesId =  $(th).parent().parent().children()[0].innerHTML;
+            $.ajax({
+                type: "post",
+                url: "/import/add",
+                traditional: true,
+                data: {'favoritesId': favoritesId},
+                success: function (json) {
+                    console.info("导入数据成功");
+                    $.alert.ajaxSuccess(json);
+                    table.refresh();
+                },
+                error: $.alert.ajaxError
+            });
+
+        }
     </script>
 </@footer>
