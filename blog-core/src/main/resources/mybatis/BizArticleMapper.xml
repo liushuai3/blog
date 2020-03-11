@@ -66,6 +66,9 @@
 		<if test="article != null and article.userId != null">
 			AND	a.user_id = #{article.userId}
 		</if>
+		<if test="article != null and article.title != null">
+			AND	a.title = #{article.title}
+		</if>
         <if test="typeId != null">
             AND	a.type_id = #{typeId}
         </if>
