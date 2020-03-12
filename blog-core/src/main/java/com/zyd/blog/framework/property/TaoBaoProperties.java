@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  * 2020/3/12     liushuai3           v1.0.0               修改原因
  */
 @Component
-@ConfigurationProperties(prefix = "taobao")
+@ConfigurationProperties(prefix = "spring.taobao")
 @Data
 public class TaoBaoProperties {
     public String url;
