@@ -94,7 +94,7 @@ public class RestImportController {
         req.setUnid(String.valueOf(System.currentTimeMillis()));
         req.setFavoritesId(Long.valueOf(favoritesId));
         req.setPageNo(1L);
-        req.setFields("num_iid,title,pict_url,click_url,volume,status,coupon_click_url,reserve_price,zk_final_price");
+        req.setFields("num_iid,title,pict_url,click_url,volume,status,coupon_click_url,reserve_price,zk_final_price,coupon_info");
         int count = 0;
         try {
             TbkUatmFavoritesItemGetResponse rsp = client.execute(req);
@@ -119,6 +119,8 @@ public class RestImportController {
                 String reserve_price = uatmTbkItem.getReservePrice();
                 //商品折扣价格
                 String zk_final_price = uatmTbkItem.getZkFinalPrice();
+                //优惠卷面额
+                String coupon_info =uatmTbkItem.getCouponInfo();
                 if(status==1){
                     ArticleConditionVO vo = new ArticleConditionVO();
                     Article article = new Article();
@@ -131,8 +133,13 @@ public class RestImportController {
                         StringBuilder stringContent = new StringBuilder();
                         stringContent.append("<p><img src=\"").append(pict_url).append("\" alt=\"\" style=\"box-sizing: inherit; border-style: none; height: auto; max-width: 100%; color: rgb(51, 51, 51); font-family: Helvetica, Arial, &quot;Microsoft Yahei&quot;, &quot;Hiragino Sans GB&quot;, &quot;Heiti SC&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 12px; background-color: rgb(238, 238, 238);\"><br mxs=\"pub-threeaU:c\" style=\"box-sizing: inherit; color: rgb(51, 51, 51); font-family: Helvetica, Arial, &quot;Microsoft Yahei&quot;, &quot;Hiragino Sans GB&quot;, &quot;Heiti SC&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 12px; background-color: rgb(238, 238, 238);\"></p><pre style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 0px; white-space: pre-wrap; font-size: 12px; background-color: rgb(238, 238, 238);\">【爆款推荐】").append(title).append(" \n" +
                                 "30天销量达").append(volume).append("件 \n" +
-                                "原价").append(reserve_price).append("元，优惠价仅").append(zk_final_price).append("元\n" +
-                                "-----------------\n" +
+                                "原价").append(reserve_price).append("元，优惠价").append(zk_final_price).append("元");
+                        if(coupon_info!=null && coupon_click_url!=null){
+                            stringContent.append(",还有(").append(coupon_info).append(")的优惠卷可以领取哟！！！\n");
+                        }else {
+                            stringContent.append("\n");
+                        }
+                        stringContent.append("-----------------\n" +
                                 "<p style=\"margin-top: 0px; margin-bottom: 16px;\">【立即领券】点击链接即可领券购买:<a href=\"").append(coupon_click_url==null?"":coupon_click_url).append("\" target=\"_blank\" style=\"color: rgb(3, 102, 214);\">").append(coupon_click_url==null?"无":coupon_click_url).append("</a></p><p style=\"margin-top: 0px; margin-bottom: 16px;\">【立即下单】点击链接立即下单：<a href=\"").append(click_url).append("\" target=\"_blank\" style=\"color: rgb(3, 102, 214);\">").append(click_url).append("</a></p></pre>");
                         count++;
                         article.setCoverImage(pict_url);
