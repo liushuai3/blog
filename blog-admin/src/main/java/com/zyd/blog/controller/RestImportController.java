@@ -19,6 +19,7 @@ import com.zyd.blog.framework.object.PageResult;
 import com.zyd.blog.framework.object.ResponseVO;
 import com.zyd.blog.util.ResultUtil;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,7 @@ public class RestImportController {
     @Autowired
     private BizArticleService articleService;
 
-    //@RequiresPermissions("imports")
+    @RequiresPermissions("imports")
     @PostMapping("/list")
     public PageResult list(Map vo) {
         String url = "https://eco.taobao.com/router/rest";
@@ -75,7 +76,7 @@ public class RestImportController {
         return ResultUtil.tablePage(bean);
     }
 
-    //@RequiresPermissions("import:add")
+    @RequiresPermissions("import:add")
     @PostMapping(value = "/add")
     @BussinessLog("数据导入")
     public ResponseVO add(String favoritesId) {

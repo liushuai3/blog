@@ -31,8 +31,7 @@
          */
         function operateFormatter(code, row, index) {
             var operateBtn = [
-                /*'<@shiro.hasPermission name="import:add"><button id="btn_import" type="button" onclick="importData(this)" class="btn btn-info" title="导入该选品库数据"><i class="fa fa-plus fa-fw"></i></button></@shiro.hasPermission>'*/
-                '<button id="btn_import" type="button" onclick="importData(this)" class="btn btn-info" title="导入该选品库数据"><i class="fa fa-plus fa-fw"></i></button>'
+                '<@shiro.hasPermission name="import:add"><button id="btn_import" type="button" onclick="importData(this)" class="btn btn-info" title="导入该选品库数据"><i class="fa fa-plus fa-fw"></i></button></@shiro.hasPermission>'
             ];
             return operateBtn.join('');
         }
