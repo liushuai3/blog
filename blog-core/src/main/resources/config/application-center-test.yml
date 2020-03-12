@@ -25,5 +25,8 @@ spring:
     store-type: redis
 
   ####### 自定义配置 #######
-
+  taobao:
+    url: https://eco.taobao.com/router/rest
+    appkey: 28485666
+    secret: feac79d58095283addca7ab933500b89
   ####### 自定义配置 #######

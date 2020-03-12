@@ -17,6 +17,7 @@ import com.zyd.blog.business.service.BizArticleService;
 import com.zyd.blog.business.vo.ArticleConditionVO;
 import com.zyd.blog.framework.object.PageResult;
 import com.zyd.blog.framework.object.ResponseVO;
+import com.zyd.blog.framework.property.TaoBaoProperties;
 import com.zyd.blog.util.ResultUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -42,14 +43,16 @@ import java.util.Map;
 @RequestMapping("/import")
 public class RestImportController {
     @Autowired
+    TaoBaoProperties taoBaoProperties;
+    @Autowired
     private BizArticleService articleService;
 
     @RequiresPermissions("imports")
     @PostMapping("/list")
     public PageResult list(Map vo) {
-        String url = "https://eco.taobao.com/router/rest";
-        String appkey = "28485666";
-        String secret = "feac79d58095283addca7ab933500b89";
+        String url = taoBaoProperties.url;
+        String appkey = taoBaoProperties.appkey;
+        String secret = taoBaoProperties.secret;
         TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
         TbkUatmFavoritesGetRequest req = new TbkUatmFavoritesGetRequest();
         req.setPageNo(1L);
@@ -80,9 +83,9 @@ public class RestImportController {
     @PostMapping(value = "/add")
     @BussinessLog("数据导入")
     public ResponseVO add(String favoritesId) {
-        String url = "https://eco.taobao.com/router/rest";
-        String appkey = "28485666";
-        String secret = "feac79d58095283addca7ab933500b89";
+        String url = taoBaoProperties.url;
+        String appkey = taoBaoProperties.appkey;
+        String secret = taoBaoProperties.secret;
         TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
         TbkUatmFavoritesItemGetRequest req = new TbkUatmFavoritesItemGetRequest();
         req.setPlatform(1L);
