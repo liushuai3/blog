@@ -12,7 +12,7 @@ spring:
     password: ls@123456
   ####### Redis Config #######
   redis:
-    #database: 5
+    database: 5
     # Redis服务器地址
     #host: 123.59.196.96
     # Redis服务器连接端口
@@ -24,16 +24,6 @@ spring:
       master: mymaster
       # sentinel服务的ip和端口,47.111.95.247:26379
       nodes: 123.59.196.96:26379,118.24.120.220:26379
-    lettuce:
-      pool:
-      # 连接池最大连接数(使用负值表示没有限制) 默认为8
-      max-active: 8
-      # 连接池中的最大空闲连接 默认为8
-      max-idle: 8
-      # 连接池最大阻塞等待时间(使用负值表示没有限制) 默认为-1
-      max-wait: -1ms
-      # 连接池中的最小空闲连接 默认为 0
-      min-idle: 0
   ####### redis缓存服务配置 #######
   session:
     store-type: redis
