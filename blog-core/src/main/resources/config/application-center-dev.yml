@@ -14,11 +14,16 @@ spring:
   redis:
     database: 5
     # Redis服务器地址
-    host: 123.59.196.96
+    #host: 123.59.196.96
     # Redis服务器连接端口
-    port: 6379
+    #port: 6379
     # Redis服务器连接密码（默认为空）
     password: ls@123456
+    sentinel:
+      # 主节点的别名
+      master: mymaster
+      # sentinel服务的ip和端口
+      nodes: 123.59.196.96:26379,118.24.120.220:26379,47.111.95.247:26379
 
   ####### redis缓存服务配置 #######
   session:

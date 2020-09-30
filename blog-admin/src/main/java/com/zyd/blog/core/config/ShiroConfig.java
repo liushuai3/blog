@@ -4,8 +4,9 @@ import com.zyd.blog.core.shiro.ShiroService;
 import com.zyd.blog.core.shiro.credentials.RetryLimitCredentialsMatcher;
 import com.zyd.blog.core.shiro.realm.ShiroRealm;
 import com.zyd.blog.framework.property.RedisProperties;
+import com.zyd.blog.framework.property.SentinelRedisProperties;
 import com.zyd.blog.framework.property.ShiroProperties;
-import com.zyd.blog.framework.redis.CustomRedisManager;
+import com.zyd.blog.framework.redis.CustomSentinelRedisManager;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -27,7 +28,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.annotation.Order;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Shiro配置类
@@ -48,6 +51,8 @@ public class ShiroConfig {
     private RedisProperties redisProperties;
     @Autowired
     private ShiroProperties shiroProperties;
+    @Autowired
+    SentinelRedisProperties sentinelRedisProperties;
 
     @Bean(name = "lifecycleBeanPostProcessor")
     public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
@@ -157,13 +162,28 @@ public class ShiroConfig {
      * @return
      */
     public RedisManager redisManager() {
-        CustomRedisManager redisManager = new CustomRedisManager();
-        redisManager.setHost(redisProperties.getHost());
-        redisManager.setPort(redisProperties.getPort());
+        //使用单机模式
+        //CustomRedisManager redisManager = new CustomRedisManager();
+        //redisManager.setHost(redisProperties.getHost());
+        //redisManager.setPort(redisProperties.getPort());
+        //redisManager.setDatabase(redisProperties.getDatabase());
+        //redisManager.setExpire(redisProperties.getExpire());
+        //redisManager.setTimeout(redisProperties.getTimeout().getNano() * 1000);
+        //redisManager.setPassword(redisProperties.getPassword());
+
+        //使用哨兵模式
+        CustomSentinelRedisManager redisManager = new CustomSentinelRedisManager();
         redisManager.setDatabase(redisProperties.getDatabase());
-        redisManager.setExpire(redisProperties.getExpire());
-        redisManager.setTimeout(redisProperties.getTimeout().getNano() * 1000);
         redisManager.setPassword(redisProperties.getPassword());
+        redisManager.setTimeout(redisProperties.getTimeout().getNano() * 1000);
+        redisManager.setExpire(redisProperties.getExpire());
+        redisManager.setMasterName(sentinelRedisProperties.getMaster());
+        String[] sentinelsArr = sentinelRedisProperties.getNodes().split(",");
+        Set<String> sentinels = new HashSet<>();
+        for (String sentinel : sentinelsArr) {
+            sentinels.add(sentinel);
+        }
+        redisManager.setSentinels(sentinels);
         return redisManager;
     }
 

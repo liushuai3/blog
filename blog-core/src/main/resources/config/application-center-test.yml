@@ -22,8 +22,8 @@ spring:
     sentinel:
       # 主节点的别名
       master: mymaster
-      # sentinel服务的ip和端口,47.111.95.247:26379
-      nodes: 123.59.196.96:26379,118.24.120.220:26379
+      # sentinel服务的ip和端口
+      nodes: 123.59.196.96:26379,118.24.120.220:26379,47.111.95.247:26379
   ####### redis缓存服务配置 #######
   session:
     store-type: redis
