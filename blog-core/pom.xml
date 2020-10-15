@@ -15,6 +15,7 @@
         <version>2.2.2</version>
     </parent>
 
+    
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -233,9 +234,16 @@
             <version>${justauth.version}</version>
         </dependency>
         <dependency>
-            <groupId>taobao-sdk-java-auto</groupId>
+            <groupId>taobao</groupId>
             <artifactId>taobao-sdk-java-auto</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>
+    
+    <repositories>
+        <repository>
+            <id>localRepository</id>
+            <url>file://${basedir}/lib</url>
+        </repository>
+    </repositories>
 </project>
