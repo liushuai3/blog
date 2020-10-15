@@ -1,11 +1,11 @@
 # Server settings
 server:
     #https配置
-    ssl:
-        key-store: classpath:/www.lcools.cn.jks
-        enabled: true
-        key-store-password: ls@123456
-        key-store-type: JKS
+#    ssl:
+#        key-store: classpath:/www.lcools.cn.jks
+#        enabled: true
+#        key-store-password: ls@123456
+#        key-store-type: JKS
     #https配置
     #ssl:
     #   key-store: classpath:/www.lcools.cn.pfx
