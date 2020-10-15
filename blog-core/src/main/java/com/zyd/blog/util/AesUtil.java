@@ -10,10 +10,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 /**
- *
  * @author yadong.zhang (yadong.zhang0415(a)gmail.com)
- * @website https://www.zhyd.me
  * @version 1.0
+ * @website https://www.zhyd.me
  * @date 2018/4/16 16:26
  * @since 1.0
  */
@@ -24,10 +23,8 @@ public class AesUtil {
     /**
      * AES加密
      *
-     * @param passwd
-     *         加密的密钥
-     * @param content
-     *         需要加密的字符串
+     * @param passwd  加密的密钥
+     * @param content 需要加密的字符串
      * @return 返回Base64转码后的加密数据
      * @throws Exception
      */
@@ -50,10 +47,8 @@ public class AesUtil {
     /**
      * AES解密
      *
-     * @param passwd
-     *         加密的密钥
-     * @param encrypted
-     *         已加密的密文
+     * @param passwd    加密的密钥
+     * @param encrypted 已加密的密文
      * @return 返回解密后的数据
      * @throws Exception
      */
