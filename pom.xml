@@ -97,41 +97,41 @@
     <!-- Maven控制Spring Profile -->
     <profiles>
         <!--默认开启dev-->
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <profileActive>dev</profileActive>
-            </properties>
-            <build>
-                <!-- 产生的构件的文件名，默认值是${artifactId}-${version}-->
-                <finalName>${project.artifactId}-${project.version}</finalName>
-            </build>
-        </profile>
+<!--        <profile>-->
+<!--            <id>dev</id>-->
+<!--            <activation>-->
+<!--                <activeByDefault>true</activeByDefault>-->
+<!--            </activation>-->
+<!--            <properties>-->
+<!--                <profileActive>dev</profileActive>-->
+<!--            </properties>-->
+<!--            <build>-->
+<!--                &lt;!&ndash; 产生的构件的文件名，默认值是${artifactId}-${version}&ndash;&gt;-->
+<!--                <finalName>${project.artifactId}-${project.version}</finalName>-->
+<!--            </build>-->
+<!--        </profile>-->
         <!--测试配置-->
-        <profile>
-            <id>test</id>
-            <properties>
-                <profileActive>test</profileActive>
-            </properties>
-            <build>
-                <!-- 产生的构件的文件名-->
-                <finalName>${project.artifactId}-${project.version}</finalName>
-            </build>
-        </profile>
+<!--        <profile>-->
+<!--            <id>test</id>-->
+<!--            <properties>-->
+<!--                <profileActive>test</profileActive>-->
+<!--            </properties>-->
+<!--            <build>-->
+<!--                &lt;!&ndash; 产生的构件的文件名&ndash;&gt;-->
+<!--                <finalName>${project.artifactId}-${project.version}</finalName>-->
+<!--            </build>-->
+<!--        </profile>-->
         <!--生产配置-->
-        <profile>
-            <id>prod</id>
-            <properties>
-                <profileActive>prod</profileActive>
-            </properties>
-            <build>
-                <!-- 产生的构件的文件名-->
-                <finalName>${project.artifactId}-${project.version}</finalName>
-            </build>
-        </profile>
+<!--        <profile>-->
+<!--            <id>prod</id>-->
+<!--            <properties>-->
+<!--                <profileActive>prod</profileActive>-->
+<!--            </properties>-->
+<!--            <build>-->
+<!--                &lt;!&ndash; 产生的构件的文件名&ndash;&gt;-->
+<!--                <finalName>${project.artifactId}-${project.version}</finalName>-->
+<!--            </build>-->
+<!--        </profile>-->
     </profiles>
 
     <build>
