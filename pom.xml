@@ -14,6 +14,7 @@
         <module>blog-file</module>
     </modules>
 
+    
     <name>blog</name>
     <description>OneBlog是一款简洁美观、自适应的Java博客系统</description>
 
