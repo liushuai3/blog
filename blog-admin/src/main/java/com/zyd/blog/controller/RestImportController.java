@@ -7,8 +7,9 @@ import com.github.pagehelper.PageInfo;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
 import com.taobao.api.domain.UatmTbkItem;
-import com.taobao.api.request.TbkUatmFavoritesGetRequest;
+import com.taobao.api.request.TbkDgOptimusMaterialRequest;
 import com.taobao.api.request.TbkUatmFavoritesItemGetRequest;
+import com.taobao.api.response.TbkDgOptimusMaterialResponse;
 import com.taobao.api.response.TbkUatmFavoritesGetResponse;
 import com.taobao.api.response.TbkUatmFavoritesItemGetResponse;
 import com.zyd.blog.business.annotation.BussinessLog;
@@ -54,23 +55,36 @@ public class RestImportController {
         String appkey = taoBaoProperties.appkey;
         String secret = taoBaoProperties.secret;
         TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
-        TbkUatmFavoritesGetRequest req = new TbkUatmFavoritesGetRequest();
-        req.setPageNo(1L);
+        //TbkUatmFavoritesGetRequest req = new TbkUatmFavoritesGetRequest();
+        //req.setPageNo(1L);
+        //req.setPageSize(20L);
+        //req.setFields("favorites_title,favorites_id,type");
+        //req.setType(1L);
+        TbkDgOptimusMaterialRequest req = new TbkDgOptimusMaterialRequest();
         req.setPageSize(20L);
-        req.setFields("favorites_title,favorites_id,type");
-        req.setType(1L);
+        req.setAdzoneId(123L);
+        req.setPageNo(1L);
+        req.setMaterialId(123L);
+        req.setDeviceValue("xxx");
+        req.setDeviceEncrypt("MD5");
+        req.setDeviceType("IMEI");
+        req.setContentId(323L);
+        req.setContentSource("xxx");
+        req.setItemId(33243L);
+        req.setFavoritesId("123445");
+        TbkDgOptimusMaterialResponse rsp = client.execute(req);
         List<Map> list = new ArrayList();
-        try{
-            TbkUatmFavoritesGetResponse rsp = client.execute(req);
-            JSONObject jsonObjectBody = JSON.parseObject(rsp.getBody());
-            JSONArray jsonArray = jsonObjectBody.getJSONObject("tbk_uatm_favorites_get_response").getJSONObject("results").getJSONArray("tbk_favorites");
-
-            for (int i=0 ; i<jsonArray.size() ; i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Map map = JSON.parseObject(jsonObject.toJSONString());
-                list.add(map);
-            }
-        }catch (Exception e){
+        try {
+            //TbkUatmFavoritesGetResponse rsp = client.execute(req);
+            //JSONObject jsonObjectBody = JSON.parseObject(rsp.getBody());
+            //JSONArray jsonArray = jsonObjectBody.getJSONObject("tbk_uatm_favorites_get_response").getJSONObject("results").getJSONArray("tbk_favorites");
+            //
+            //for (int i = 0; i < jsonArray.size(); i++) {
+            //    JSONObject jsonObject = jsonArray.getJSONObject(i);
+            //    Map map = JSON.parseObject(jsonObject.toJSONString());
+            //    list.add(map);
+            //}
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -101,9 +115,9 @@ public class RestImportController {
             TbkUatmFavoritesItemGetResponse rsp = client.execute(req);
             //选品库中数据的总条数
             long totalResults = rsp.getTotalResults();
-            long allPageNo = totalResults%pageSize!=0?(totalResults/pageSize)+1:totalResults/pageSize;
-            for(long j=1 ; j<=allPageNo ; j++){
-                if(j>1){
+            long allPageNo = totalResults % pageSize != 0 ? (totalResults / pageSize) + 1 : totalResults / pageSize;
+            for (long j = 1; j <= allPageNo; j++) {
+                if (j > 1) {
                     req.setPageNo(j);
                     rsp = client.execute(req);
                 }
@@ -129,27 +143,27 @@ public class RestImportController {
                     //商品折扣价格
                     String zk_final_price = uatmTbkItem.getZkFinalPrice();
                     //优惠卷面额
-                    String coupon_info =uatmTbkItem.getCouponInfo();
-                    if(status==1){
+                    String coupon_info = uatmTbkItem.getCouponInfo();
+                    if (status == 1) {
                         ArticleConditionVO vo = new ArticleConditionVO();
                         Article article = new Article();
-                        Long userId = (Long)SecurityUtils.getSubject().getPrincipal();
+                        Long userId = (Long) SecurityUtils.getSubject().getPrincipal();
                         article.setUserId(userId);
                         article.setTitle(title);
                         vo.setArticle(article);
                         PageInfo<Article> pageInfo = articleService.findPageBreakByCondition(vo);
-                        if(pageInfo==null){
+                        if (pageInfo == null) {
                             StringBuilder stringContent = new StringBuilder();
                             stringContent.append("<p><img src=\"").append(pict_url).append("\" alt=\"\" style=\"box-sizing: inherit; border-style: none; height: auto; max-width: 100%; color: rgb(51, 51, 51); font-family: Helvetica, Arial, &quot;Microsoft Yahei&quot;, &quot;Hiragino Sans GB&quot;, &quot;Heiti SC&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 12px; background-color: rgb(238, 238, 238);\"><br mxs=\"pub-threeaU:c\" style=\"box-sizing: inherit; color: rgb(51, 51, 51); font-family: Helvetica, Arial, &quot;Microsoft Yahei&quot;, &quot;Hiragino Sans GB&quot;, &quot;Heiti SC&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 12px; background-color: rgb(238, 238, 238);\"></p><pre style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 0px; white-space: pre-wrap; font-size: 12px; background-color: rgb(238, 238, 238);\">【爆款推荐】").append(title).append(" \n" +
                                     "30天销量达").append(volume).append("件 \n" +
                                     "原价").append(reserve_price).append("元，优惠价").append(zk_final_price).append("元");
-                            if(coupon_info!=null && coupon_click_url!=null){
+                            if (coupon_info != null && coupon_click_url != null) {
                                 stringContent.append(",还有(").append(coupon_info).append(")的优惠卷可以领取哟！！！\n");
-                            }else {
+                            } else {
                                 stringContent.append("\n");
                             }
                             stringContent.append("-----------------\n" +
-                                    "<p style=\"margin-top: 0px; margin-bottom: 16px;\">【立即领券】点击链接即可领券购买:<a href=\"").append(coupon_click_url==null?"":coupon_click_url).append("\" target=\"_blank\" style=\"color: rgb(3, 102, 214);\">").append(coupon_click_url==null?"无":coupon_click_url).append("</a></p><p style=\"margin-top: 0px; margin-bottom: 16px;\">【立即下单】点击链接立即下单：<a href=\"").append(click_url).append("\" target=\"_blank\" style=\"color: rgb(3, 102, 214);\">").append(click_url).append("</a></p></pre>");
+                                    "<p style=\"margin-top: 0px; margin-bottom: 16px;\">【立即领券】点击链接即可领券购买:<a href=\"").append(coupon_click_url == null ? "" : coupon_click_url).append("\" target=\"_blank\" style=\"color: rgb(3, 102, 214);\">").append(coupon_click_url == null ? "无" : coupon_click_url).append("</a></p><p style=\"margin-top: 0px; margin-bottom: 16px;\">【立即下单】点击链接立即下单：<a href=\"").append(click_url).append("\" target=\"_blank\" style=\"color: rgb(3, 102, 214);\">").append(click_url).append("</a></p></pre>");
                             count++;
                             article.setCoverImage(pict_url);
                             article.setIsMarkdown(false);
@@ -169,9 +183,9 @@ public class RestImportController {
                 }
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return ResultUtil.success("数据导入成功！共导入"+count+"条数据");
+        return ResultUtil.success("数据导入成功！共导入" + count + "条数据");
     }
 }
